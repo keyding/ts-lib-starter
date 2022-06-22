@@ -1,0 +1,63 @@
+{
+  "name": "ts-lib-starter",
+  "version": "0.0.0",
+  "description": "TypeScript Tool Library Development Template",
+  "author": "Gn1d",
+  "homepage": "https://github.com/keyding/ts-lib-starter#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keyding/ts-lib-starter.git"
+  },
+  "bugs": "https://github.com/keyding/ts-lib-starter/issues",
+  "keywords": [
+    "ts-lib-starter"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepare": "simple-git-hooks",
+    "dev": "rimraf dist && tsup --watch",
+    "build": "pnpm typecheck && pnpm test && pnpm format && pnpm lint && tsup",
+    "format": "prettier --write .",
+    "lint": "eslint . --fix",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "lint-staged": "^13.0.2",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "simple-git-hooks": "^2.8.0",
+    "tsup": "^6.1.2",
+    "typescript": "^4.7.4",
+    "vitest": "^0.15.2"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,mjs,ts,tsx,json}": [
+      "prettier --write .",
+      "eslint . --fix"
+    ]
+  },
+  "license": "MIT",
+  "packageManager": "pnpm@7.3.0"
+}
